@@ -23,8 +23,8 @@ const sidebarConfig = [
     icon: getIcon(peopleFill)
   },
   {
-    title: 'store owners',
-    path: '/dashboard/users',
+    title: 'sellers',
+    path: '/dashboard/sellers',
     icon: getIcon(peopleFill)
   },
   {

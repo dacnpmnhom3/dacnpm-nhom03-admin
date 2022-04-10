@@ -14,9 +14,11 @@ import Profile from "./pages/Profile";
 import UserDetail from "./pages/UserDetail";
 import ClassDetail from "./pages/ClassDetail";
 import AdminDetail from "./pages/AdminDetail";
+import Product from "./pages/Product";
 
 import RequireAuth from "./components/authentication/RequireAuth";
 import RequireSignOut from "./components/authentication/RequireSignOut";
+import ProductDetail from "./pages/ProductDetail";
 
 // ----------------------------------------------------------------------
 
@@ -34,8 +36,11 @@ export default function Router() {
         { path: "app", element: <DashboardApp /> },
         { path: "admins", element: <Admin /> },
         { path: "users", element: <User /> },
+        { path: "sellers", element: <User /> },
         { path: "classes", element: <Class /> },
         { path: "profile", element: <Profile /> },
+        { path: "products", element: <Product /> },
+        { path: "products/:productId", element: <ProductDetail /> },
         { path: "admins/create-admin", element: <CreateAdmin /> },
         { path: "admins/:adminId", element: <AdminDetail /> },
         { path: "users/:userId", element: <UserDetail /> },
