@@ -47,7 +47,7 @@ export default function ClassDetail() {
       >
         <Container maxWidth="lg">
           <Button
-            to="../"
+            to="./../"
             size="large"
             variant="contained"
             component={RouterLink}

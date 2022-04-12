@@ -29,7 +29,7 @@ const sidebarConfig = [
   },
   {
     title: 'products',
-    path: '/dashboard/classes',
+    path: '/dashboard/products',
     icon: getIcon('ic:round-dashboard-customize')
   }
 ];

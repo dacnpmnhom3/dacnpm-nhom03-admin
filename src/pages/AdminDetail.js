@@ -44,7 +44,7 @@ export default function AdminDetail() {
       >
         <Container maxWidth="lg">
           <Button
-            to="../"
+            to="./../"
             size="large"
             variant="contained"
             component={RouterLink}

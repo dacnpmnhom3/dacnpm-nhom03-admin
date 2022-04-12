@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 function RequireSignOut({ children }) {
   //localStorage.getItem("token")
   if (localStorage.getItem("token")) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/dashboard/app" />;
   }
   return children;
 }

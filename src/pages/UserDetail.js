@@ -50,7 +50,7 @@ export default function UserDetail() {
       >
         <Container maxWidth="lg">
           <Button
-            to="../"
+            to="./../"
             size="large"
             variant="contained"
             component={RouterLink}

@@ -34,12 +34,12 @@ export default function ProductProfileDetail({ productDetail }) {
     try {
       const obj =
         event.target.id === "accept"
-          ? { isVerified: "true", isPublished: "true" }
-          : { isVerified: "true" };
-      const res = await axiosClient.put(`/api/products/${values._id}`, obj);
+          ? { isVerified: true, isPublished: true }
+          : { isVerified: true };
+      const res = await axiosClient.put(`/api/products/${values.id}`, obj);
 
       navigate(-1);
-      dispatch(setSuccessMsg(res.data.message));
+      //dispatch(setSuccessMsg(res.data.message));
     } catch (error) {
       if (error.response.data && error.response.data.message) {
         dispatch(setErrorMsg(error.response.data.message));
@@ -57,6 +57,28 @@ export default function ProductProfileDetail({ productDetail }) {
             <Grid item md={12} xs={12}>
               <TextField
                 fullWidth
+                label="ID"
+                name="id"
+                onChange={handleChange}
+                disabled
+                value={values.id}
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item md={12} xs={12}>
+              <TextField
+                fullWidth
+                label="Category"
+                name="category"
+                disabled
+                onChange={handleChange}
+                value={values.category}
+                variant="outlined"
+              />
+            </Grid>
+            <Grid item md={12} xs={12}>
+              <TextField
+                fullWidth
                 label="Product name"
                 name="productName"
                 onChange={handleChange}
@@ -65,17 +87,7 @@ export default function ProductProfileDetail({ productDetail }) {
                 variant="outlined"
               />
             </Grid>
-            <Grid item md={12} xs={12}>
-              <TextField
-                fullWidth
-                label="ID"
-                name="id"
-                onChange={handleChange}
-                disabled
-                value={values._id}
-                variant="outlined"
-              />
-            </Grid>
+
             <Grid item md={12} xs={12}>
               <TextField
                 fullWidth
@@ -90,22 +102,11 @@ export default function ProductProfileDetail({ productDetail }) {
             <Grid item md={12} xs={12}>
               <TextField
                 fullWidth
-                label="Owner"
-                name="owner"
+                label="Stock"
+                name="stock"
                 disabled
                 onChange={handleChange}
-                value={values.owner}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid item md={12} xs={12}>
-              <TextField
-                fullWidth
-                label="Origin"
-                name="origin"
-                disabled
-                onChange={handleChange}
-                value={values.origin}
+                value={values.stock}
                 variant="outlined"
               />
             </Grid>

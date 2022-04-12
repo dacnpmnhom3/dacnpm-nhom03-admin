@@ -32,7 +32,7 @@ export default function ProductSummary({ productDetail }) {
             {productDetail.title}
           </Typography>
           <Typography color="textSecondary" variant="body2">
-            {productDetail.owner}
+            {productDetail.category}
           </Typography>
         </Box>
       </CardContent>

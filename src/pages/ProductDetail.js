@@ -10,10 +10,9 @@ import ProductProfileDetail from "src/components/_dashboard/products/ProductDeta
 export default function ProductDetail() {
   const { productId } = useParams();
   const [productInfo, setProductInfo] = useState({
-    createdAt: "",
-    origin: "",
-    owner: "",
-    _id: "",
+    category: "",
+    stock: "",
+    id: "",
     desc: "",
     img: "",
     price: "",
@@ -23,8 +22,8 @@ export default function ProductDetail() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get(`/api/products/find/${productId}`);
-      setProductInfo({ ...res.data });
+      const res = await axiosClient.get(`/api/products/${productId}`);
+      setProductInfo({ ...res.data.data });
     } catch (error) {
       if (error.response.data) {
         dispatch(setErrorMsg(error.response.data.message));

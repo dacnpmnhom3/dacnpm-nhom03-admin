@@ -94,7 +94,7 @@ export default function Product() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get("/api/products");
+      const res = await axiosClient.get("/api/admin/pending-products");
       setUser([...res.data]);
     } catch (error) {
       if (error.response.data) {
@@ -210,9 +210,9 @@ export default function Product() {
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
                       const {
-                        _id,
+                        id,
                         title,
-                        owner,
+                        category,
                         stock,
                         price,
                         createdAt,
@@ -223,7 +223,7 @@ export default function Product() {
                       return (
                         <TableRow
                           hover
-                          key={_id}
+                          key={id}
                           tabIndex={-1}
                           role="checkbox"
                           selected={isItemSelected}
@@ -235,7 +235,7 @@ export default function Product() {
                               onChange={(event) => handleClick(event, title)}
                             />
                           </TableCell>
-                          <TableCell align="left">{_id}</TableCell>
+                          <TableCell align="left">{id}</TableCell>
                           <TableCell component="th" scope="row" padding="none">
                             <Stack
                               direction="row"
@@ -248,15 +248,15 @@ export default function Product() {
                               </Typography>
                             </Stack>
                           </TableCell>
-                          <TableCell align="left">{owner}</TableCell>
-                          <TableCell align="left">{stock}</TableCell>
                           <TableCell align="left">{price}</TableCell>
+                          <TableCell align="left">{stock}</TableCell>
+                          <TableCell align="left">{category}</TableCell>
                           <TableCell align="left">
                             {new Date(createdAt).toLocaleString()}
                           </TableCell>
 
                           <TableCell align="right">
-                            <UserMoreMenu userId={_id} />
+                            <UserMoreMenu userId={id} />
                           </TableCell>
                         </TableRow>
                       );
