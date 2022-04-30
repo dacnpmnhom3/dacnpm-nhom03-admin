@@ -9,11 +9,17 @@ import { useNavigate } from "react-router-dom";
 import { Stack, TextField, IconButton, InputAdornment } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
+import axiosClient from "src/api/axiosClient";
+import { setErrorMsg } from "src/redux/alert";
+import { useDispatch } from "react-redux";
+import PasswordStrength from "../PasswordStrength";
+
 // ----------------------------------------------------------------------
 
 export default function RegisterForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
   const RegisterSchema = Yup.object().shape({
     fullName: Yup.string()
@@ -23,7 +29,12 @@ export default function RegisterForm() {
     email: Yup.string()
       .email("Email must be a valid email address")
       .required("Email is required"),
-    password: Yup.string().required("Password is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.{8,})/,
+        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+      ),
     phone: Yup.number().optional(),
     address: Yup.string().optional(),
   });
@@ -37,12 +48,26 @@ export default function RegisterForm() {
       address: "",
     },
     validationSchema: RegisterSchema,
-    onSubmit: () => {
-      navigate("/dashboard/admins", { replace: true });
+    onSubmit: async () => {
+      try {
+        await axiosClient.post("/api/admin/register", {
+          fullName: values.fullName,
+          email: values.email,
+          password: values.password,
+          phone: values.phone,
+          address: values.address,
+        });
+        navigate("/login", { replace: true });
+      } catch (error) {
+        if (error.response.data.message) {
+          dispatch(setErrorMsg(error.response.data.message));
+        } else console.log(error);
+      }
     },
   });
 
-  const { errors, touched, handleSubmit, isSubmitting, getFieldProps } = formik;
+  const { errors, touched, values, handleSubmit, isSubmitting, getFieldProps } =
+    formik;
 
   return (
     <FormikProvider value={formik}>
@@ -88,6 +113,7 @@ export default function RegisterForm() {
             error={Boolean(touched.password && errors.password)}
             helperText={touched.password && errors.password}
           />
+          {values.password && <PasswordStrength password={values.password} />}
 
           <TextField
             fullWidth

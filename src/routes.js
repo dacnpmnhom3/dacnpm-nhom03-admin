@@ -19,6 +19,10 @@ import Product from "./pages/Product";
 import RequireAuth from "./components/authentication/RequireAuth";
 import RequireSignOut from "./components/authentication/RequireSignOut";
 import ProductDetail from "./pages/ProductDetail";
+import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import EmailSent from "./pages/EmailSent";
+import PasswordReset from "./pages/PasswordReset";
 
 // ----------------------------------------------------------------------
 
@@ -62,6 +66,14 @@ export default function Router() {
         { path: "404", element: <NotFound /> },
         { path: "/", element: <Navigate to="/dashboard/app" /> },
         { path: "*", element: <Navigate to="/404" /> },
+        { path: "register", element: <Register /> },
+        { path: "forgotpassword", element: <ForgotPassword /> },
+        { path: "emailsent", element: <EmailSent /> },
+        { path: "emailsent/:email", element: <EmailSent /> },
+        {
+          path: "passwordreset/:adminId/:resetString",
+          element: <PasswordReset />,
+        },
       ],
     },
     { path: "*", element: <Navigate to="/404" replace /> },
