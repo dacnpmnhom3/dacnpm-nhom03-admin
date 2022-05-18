@@ -1,0 +1,27 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "airbnb"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "quotes": ["error", "double"],
+        "react/react-in-jsx-scope": "off",  // suppress errors for missing 'import React' in files
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],  // allow jsx syntax in js files (for next.js project)
+        "jsx-a11y/anchor-is-valid": "off",
+        "no-param-reassign": ["error", { "props": false }]
+    }
+}
