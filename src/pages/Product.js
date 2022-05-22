@@ -94,7 +94,7 @@ export default function Product() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get("/api/admin/pending-products");
+      const res = await axiosClient.get("/api/products/pending-products");
       setUser([...res.data]);
     } catch (error) {
       if (error.response.data) {
@@ -210,20 +210,20 @@ export default function Product() {
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
                       const {
-                        id,
-                        title,
+                        _id,
+                        name,
                         category,
                         stock,
                         price,
                         createdAt,
-                        img,
+                        thumbnails,
                       } = row;
-                      const isItemSelected = selected.indexOf(title) !== -1;
+                      const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
                         <TableRow
                           hover
-                          key={id}
+                          key={_id}
                           tabIndex={-1}
                           role="checkbox"
                           selected={isItemSelected}
@@ -232,19 +232,19 @@ export default function Product() {
                           <TableCell padding="checkbox">
                             <Checkbox
                               checked={isItemSelected}
-                              onChange={(event) => handleClick(event, title)}
+                              onChange={(event) => handleClick(event, name)}
                             />
                           </TableCell>
-                          <TableCell align="left">{id}</TableCell>
+                          <TableCell align="left">{_id}</TableCell>
                           <TableCell component="th" scope="row" padding="none">
                             <Stack
                               direction="row"
                               alignItems="center"
                               spacing={2}
                             >
-                              <Avatar alt={title} src={img} />
+                              <Avatar alt={name} src={thumbnails[0]} />
                               <Typography variant="subtitle2" noWrap>
-                                {title}
+                                {name}
                               </Typography>
                             </Stack>
                           </TableCell>
@@ -256,7 +256,7 @@ export default function Product() {
                           </TableCell>
 
                           <TableCell align="right">
-                            <UserMoreMenu userId={id} />
+                            <UserMoreMenu userId={_id} />
                           </TableCell>
                         </TableRow>
                       );

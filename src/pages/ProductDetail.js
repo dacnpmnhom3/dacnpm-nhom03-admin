@@ -6,13 +6,14 @@ import axiosClient from "src/api/axiosClient";
 import { setErrorMsg } from "src/redux/alert";
 import ProductSummary from "src/components/_dashboard/products/ProductSummary";
 import ProductProfileDetail from "src/components/_dashboard/products/ProductDetail";
+import ImagesCarousel from "src/components/_dashboard/products/productCarousel";
 
 export default function ProductDetail() {
   const { productId } = useParams();
   const [productInfo, setProductInfo] = useState({
     category: "",
     stock: "",
-    id: "",
+    _id: "",
     desc: "",
     img: "",
     price: "",
@@ -23,6 +24,7 @@ export default function ProductDetail() {
   async function fetchAPI() {
     try {
       const res = await axiosClient.get(`/api/products/${productId}`);
+      console.log(res.data);
       setProductInfo({ ...res.data.data });
     } catch (error) {
       if (error.response.data) {
@@ -58,7 +60,8 @@ export default function ProductDetail() {
           </Typography>
           <Grid container spacing={3}>
             <Grid item lg={4} md={6} xs={12}>
-              <ProductSummary productDetail={productInfo} />
+              <ImagesCarousel />
+              {/* <ProductSummary productDetail={productInfo} /> */}
             </Grid>
             <Grid item lg={8} md={6} xs={12}>
               <ProductProfileDetail productDetail={productInfo} />
