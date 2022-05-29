@@ -30,29 +30,29 @@ export default function ProductProfileDetail({ productDetail }) {
     });
   };
 
-  const handleSubmit = async (event) => {
-    try {
-      const obj =
-        event.target.id === "accept"
-          ? { is_verified: true, is_published: true }
-          : { is_verified: true };
+  // const handleSubmit = async (event) => {
+  //   try {
+  //     const obj =
+  //       event.target.id === "accept"
+  //         ? { is_verified: true, is_published: true }
+  //         : { is_verified: true };
 
-      console.log(values._id);
-      const res = await axiosClient.put(`/api/products/${values._id}`, obj);
+  //     console.log(values._id);
+  //     const res = await axiosClient.put(`/api/products/${values._id}`, obj);
 
-      navigate(-1);
-      //dispatch(setSuccessMsg(res.data.message));
-    } catch (error) {
-      if (error.response.data && error.response.data.message) {
-        dispatch(setErrorMsg(error.response.data.message));
-      } else console.log(error);
-    }
-  };
+  //     navigate(-1);
+  //     //dispatch(setSuccessMsg(res.data.message));
+  //   } catch (error) {
+  //     if (error.response.data && error.response.data.message) {
+  //       dispatch(setErrorMsg(error.response.data.message));
+  //     } else console.log(error);
+  //   }
+  // };
 
   return (
     <form autoComplete="off">
       <Card>
-        <CardHeader title="Profile" />
+        <CardHeader title="Info" />
         <Divider />
         <CardContent>
           <Grid container spacing={3}>
@@ -82,33 +82,10 @@ export default function ProductProfileDetail({ productDetail }) {
               <TextField
                 fullWidth
                 label="Product name"
-                name="productName"
+                name="name"
                 onChange={handleChange}
                 disabled
-                value={values.title}
-                variant="outlined"
-              />
-            </Grid>
-
-            <Grid item md={12} xs={12}>
-              <TextField
-                fullWidth
-                label="Price"
-                name="price"
-                disabled
-                onChange={handleChange}
-                value={values.price}
-                variant="outlined"
-              />
-            </Grid>
-            <Grid item md={12} xs={12}>
-              <TextField
-                fullWidth
-                label="Stock"
-                name="stock"
-                disabled
-                onChange={handleChange}
-                value={values.stock}
+                value={values.name}
                 variant="outlined"
               />
             </Grid>
@@ -116,18 +93,17 @@ export default function ProductProfileDetail({ productDetail }) {
               <TextField
                 fullWidth
                 type="text"
-                label="Description"
-                name="description"
+                label="Created Date"
+                name="createdAt"
                 disabled
                 onChange={handleChange}
-                value={values.desc}
+                value={new Date(values.createdAt).toLocaleString()}
                 variant="outlined"
-                multiline
               />
             </Grid>
           </Grid>
         </CardContent>
-        <Divider />
+        {/* <Divider />
         <Box
           sx={{
             display: "flex",
@@ -152,7 +128,7 @@ export default function ProductProfileDetail({ productDetail }) {
           >
             Deny
           </Button>
-        </Box>
+        </Box> */}
       </Card>
     </form>
   );

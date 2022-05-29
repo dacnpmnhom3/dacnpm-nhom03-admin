@@ -35,7 +35,7 @@ const RootStyle = styled("div")(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function ClassSearch({ classes }) {
+export default function ProductSearch({ products }) {
   const navigate = useNavigate();
   const handleChangeInput = (event, value) => {
     navigate(`./${value._id}`, { replace: true });
@@ -46,13 +46,13 @@ export default function ClassSearch({ classes }) {
         size="small"
         disablePortal
         popupIcon={null}
-        options={classes}
+        options={products}
         getOptionLabel={(clss) => clss.name}
         onChange={handleChangeInput}
         renderInput={(params) => (
           <TextField
             {...params}
-            placeholder="Search class..."
+            placeholder="Search product..."
             InputProps={{
               ...params.InputProps,
               startAdornment: (
