@@ -14,7 +14,7 @@ export default function CreateAdminForm() {
   const [receivers, setReceivers] = useState([]);
 
   const enterPressed = (e) => {
-    if (e.keyCode === 13 && input.length !== 0) {
+    if (e && e.keyCode === 13 && input.length !== 0) {
       document.getElementById("myForm").submit();
     }
   };
@@ -31,12 +31,14 @@ export default function CreateAdminForm() {
   async function handleInvite() {
     try {
       setLoading(true);
-      const res = await axiosClient.post("/api/classes/invite-", {
+      const res = await axiosClient.post("/api/admin/invite-admins", {
         emails: receivers,
       });
       setLoading(false);
-      const { message } = res.data;
+
+      const { message } = res.data.data;
       dispatch(setSuccessMsg(message));
+      setReceivers([]);
     } catch (error) {
       setLoading(false);
       if (error.response) {

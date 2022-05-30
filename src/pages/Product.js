@@ -27,7 +27,8 @@ export default function Product() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get("/api/products/pending-products");
+      const res = await axiosClient.get("/api/product/pending-products");
+
       setProducts([...res.data.data]);
     } catch (error) {
       if (error.response.data) {

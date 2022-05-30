@@ -10,6 +10,8 @@ import {
 import { useState, useEffect } from "react";
 import StandardImageList from "./productCarousel";
 import { Fragment as ReactFragment } from "react";
+import { fCurrency } from "src/utils/formatNumber";
+
 export default function ProductVariations({ variations }) {
   const [values, setValues] = useState(variations);
 
@@ -56,9 +58,8 @@ export default function ProductVariations({ variations }) {
                           fullWidth
                           label="Price"
                           name="price"
-                          type="number"
                           disabled
-                          value={variation.price}
+                          value={`${fCurrency(variation.price)} VND`}
                           variant="outlined"
                         />
                       </Grid>

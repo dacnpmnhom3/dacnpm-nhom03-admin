@@ -14,7 +14,7 @@ import { useParams, Link as RouterLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import axiosClient from "src/api/axiosClient";
-import { setErrorMsg } from "src/redux/alert";
+import { setErrorMsg, setSuccessMsg } from "src/redux/alert";
 import ProductProfileDetail from "src/components/_dashboard/products/ProductDetail";
 import { styled } from "@mui/material/styles";
 import ProductPropertyTable from "src/components/_dashboard/products/ProductPropertyTable";
@@ -45,7 +45,7 @@ export default function ProductDetail() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get(`/api/products/${productId}`);
+      const res = await axiosClient.get(`/api/product/${productId}`);
       setProductInfo({ ...res.data.data });
     } catch (error) {
       if (error.response.data) {
@@ -63,10 +63,10 @@ export default function ProductDetail() {
         event.target.id === "accept"
           ? { status: "accepted" }
           : { status: "denied" };
-      const res = await axiosClient.put(`/api/products/${productId}`, obj);
+      const res = await axiosClient.put(`/api/product/${productId}`, obj);
 
+      dispatch(setSuccessMsg(res.data.data.message));
       navigate(-1);
-      //dispatch(setSuccessMsg(res.data.message));
     } catch (error) {
       if (error.response.data && error.response.data.message) {
         dispatch(setErrorMsg(error.response.data.message));
