@@ -2,7 +2,7 @@ import axios from "axios";
 import { store } from "../redux/store";
 
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_PRODUCT_SERVER_URL,
+  baseURL: process.env.REACT_APP_SERVER_URL2,
 });
 
 axiosClient.interceptors.request.use(
@@ -30,7 +30,7 @@ axiosClient.interceptors.response.use(
 );
 
 const adminAxios = axios.create({
-  baseURL: process.env.REACT_APP_ADMIN_SERVER_URL,
+  baseURL: process.env.REACT_APP_SERVER_URL,
 });
 
 adminAxios.interceptors.request.use(
