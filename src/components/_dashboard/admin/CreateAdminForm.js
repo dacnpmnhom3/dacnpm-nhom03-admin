@@ -4,7 +4,7 @@ import { Stack, TextField, Typography, Button, Chip } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { setErrorMsg, setSuccessMsg } from "src/redux/alert";
 import { useDispatch } from "react-redux";
-import axiosClient from "src/api/axiosClient";
+import { adminAxios } from "src/api/axiosClient";
 // ----------------------------------------------------------------------
 export default function CreateAdminForm() {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export default function CreateAdminForm() {
   async function handleInvite() {
     try {
       setLoading(true);
-      const res = await axiosClient.post("/api/admin/invite-admins", {
+      const res = await adminAxios.post("/api/admin/invite-admins", {
         emails: receivers,
       });
       setLoading(false);

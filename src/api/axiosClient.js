@@ -1,8 +1,10 @@
 import axios from "axios";
 import { store } from "../redux/store";
+
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_SERVER_URL,
+  baseURL: process.env.REACT_APP_PRODUCT_SERVER_URL,
 });
+
 axiosClient.interceptors.request.use(
   (config) => {
     config.headers.Authorization = "Bearer " + store.getState().user.token;
@@ -26,4 +28,33 @@ axiosClient.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-export default axiosClient;
+
+const adminAxios = axios.create({
+  baseURL: process.env.REACT_APP_ADMIN_SERVER_URL,
+});
+
+adminAxios.interceptors.request.use(
+  (config) => {
+    config.headers.Authorization = "Bearer " + store.getState().user.token;
+    return config;
+  },
+  (error) => {
+    throw error;
+  }
+);
+
+adminAxios.interceptors.response.use(
+  (res) => {
+    return res;
+  },
+  (error) => {
+    const { status } = error.response;
+    if (status === 401) {
+      localStorage.removeItem("token");
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  }
+);
+
+export { axiosClient, adminAxios };

@@ -4,7 +4,7 @@ import ClassDetailForm from "src/components/_dashboard/class/ClassDetail";
 
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
+import { adminAxios } from "src/api/axiosClient";
 import { setErrorMsg } from "src/redux/alert";
 
 export default function ClassDetail() {
@@ -24,7 +24,7 @@ export default function ClassDetail() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get(`/api/admin/classes/${classId}`);
+      const res = await adminAxios.get(`/api/admin/classes/${classId}`);
 
       setClassDetail({ ...res.data });
     } catch (error) {

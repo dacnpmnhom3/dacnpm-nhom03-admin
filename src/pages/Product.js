@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
+import { axiosClient } from "src/api/axiosClient";
 import { setErrorMsg } from "src/redux/alert";
 
 // material

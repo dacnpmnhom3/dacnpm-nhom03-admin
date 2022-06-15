@@ -5,7 +5,7 @@ import UserProfile from "src/components/_dashboard/user/UserProfile";
 
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
+import { adminAxios } from "src/api/axiosClient";
 import { setErrorMsg } from "src/redux/alert";
 
 export default function UserDetail() {
@@ -28,7 +28,7 @@ export default function UserDetail() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get(`/api/admin/users/${userId}`);
+      const res = await adminAxios.get(`/api/admin/users/${userId}`);
       setUserDetail({ ...res.data });
     } catch (error) {
       if (error.response.data && error.response.data.message) {

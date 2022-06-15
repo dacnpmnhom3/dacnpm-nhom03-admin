@@ -4,7 +4,7 @@ import AccountProfile from "../components/account/account-profile";
 import AdminProfileDetails from "src/components/_dashboard/admin/AdminDetail";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
+import { adminAxios } from "src/api/axiosClient";
 import { setErrorMsg } from "src/redux/alert";
 
 export default function AdminDetail() {
@@ -21,7 +21,7 @@ export default function AdminDetail() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get(`/api/admin/${adminId}`);
+      const res = await adminAxios.get(`/api/admin/${adminId}`);
       setAdminInfo({ ...res.data });
     } catch (error) {
       if (error.response.data) {

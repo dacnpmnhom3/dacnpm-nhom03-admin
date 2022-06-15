@@ -9,7 +9,7 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import axiosClient from "src/api/axiosClient";
+import { adminAxios } from "src/api/axiosClient";
 import { setErrorMsg, setSuccessMsg } from "src/redux/alert";
 import { useDispatch } from "react-redux";
 import { setUser } from "src/redux/user";
@@ -32,7 +32,7 @@ export default function AccountProfileDetails({ userDetail, onChange }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const res = await axiosClient.put(`/api/admin/${values.id}`, {
+      const res = await adminAxios.put(`/api/admin/${values.id}`, {
         fullName: values.fullName,
         phone: values.phone ? values.phone : null,
         address: values.address,

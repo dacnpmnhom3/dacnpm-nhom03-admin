@@ -13,7 +13,7 @@ import {
 import { useParams, Link as RouterLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
+import { axiosClient } from "src/api/axiosClient";
 import { setErrorMsg, setSuccessMsg } from "src/redux/alert";
 import ProductProfileDetail from "src/components/_dashboard/products/ProductDetail";
 import { styled } from "@mui/material/styles";

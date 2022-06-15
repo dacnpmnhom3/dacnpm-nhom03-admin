@@ -2,7 +2,7 @@ import { filter } from "lodash";
 import { Icon } from "@iconify/react";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
+import { adminAxios } from "src/api/axiosClient";
 import { setErrorMsg } from "src/redux/alert";
 import plusFill from "@iconify/icons-eva/plus-fill";
 import { Link as RouterLink } from "react-router-dom";
@@ -93,7 +93,7 @@ export default function User() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get("/api/admin/users");
+      const res = await adminAxios.get("/api/admin/users");
       setUser([...res.data]);
     } catch (error) {
       if (error.response.data) {

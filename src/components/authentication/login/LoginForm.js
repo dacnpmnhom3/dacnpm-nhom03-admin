@@ -16,7 +16,7 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import axiosClient from "src/api/axiosClient";
+import { adminAxios } from "src/api/axiosClient";
 import { setIsAuthenticated, setToken, setUser } from "src/redux/user";
 import { setErrorMsg } from "src/redux/alert";
 import { useDispatch } from "react-redux";
@@ -43,7 +43,7 @@ export default function LoginForm() {
     validationSchema: LoginSchema,
     onSubmit: async () => {
       try {
-        const res = await axiosClient.post("/api/admin/login", {
+        const res = await adminAxios.post("/api/admin/login", {
           email: values.email,
           password: values.password,
         });
