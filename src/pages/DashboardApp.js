@@ -10,7 +10,7 @@ import {
 } from "../components/_dashboard/app";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
+import { adminAxios } from "src/api/axiosClient";
 import { setErrorMsg } from "src/redux/alert";
 // ----------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ export default function DashboardApp() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get("/api/admin/total-report");
+      const res = await adminAxios.get("/api/admin/total-report");
       setReport({ ...res.data });
     } catch (error) {
       if (error.response.data) {

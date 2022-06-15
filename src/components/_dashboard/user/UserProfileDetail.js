@@ -10,7 +10,7 @@ import {
   TextField,
   MenuItem,
 } from "@mui/material";
-import axiosClient from "src/api/axiosClient";
+import { adminAxios } from "src/api/axiosClient";
 import { setErrorMsg, setSuccessMsg } from "src/redux/alert";
 import { useDispatch } from "react-redux";
 
@@ -32,7 +32,7 @@ export default function UserProfileDetail({ userDetail }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const res = await axiosClient.put(`/api/admin/users/${values.id}`, {
+      const res = await adminAxios.put(`/api/admin/users/${values.id}`, {
         studentId: values.student_id ? values.student_id : null,
         isLock: values.isLock,
       });

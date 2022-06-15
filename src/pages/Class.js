@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import axiosClient from "src/api/axiosClient";
+import { adminAxios } from "src/api/axiosClient";
 import { setErrorMsg } from "src/redux/alert";
 
 import { Icon } from "@iconify/react";
@@ -31,7 +31,7 @@ export default function Class() {
 
   async function fetchAPI() {
     try {
-      const res = await axiosClient.get("/api/admin/classes");
+      const res = await adminAxios.get("/api/admin/classes");
       setClasses([...res.data]);
     } catch (error) {
       if (error.response.data) {
