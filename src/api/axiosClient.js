@@ -31,6 +31,7 @@ axiosClient.interceptors.response.use(
 
 const adminAxios = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
+  headers: {"Access-Control-Allow-Origin": "*"}
 });
 
 adminAxios.interceptors.request.use(
